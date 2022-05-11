@@ -75,7 +75,7 @@ def get_cat_or_abort(cat_id):
 
 @cats_bp.route("/<cat_id>",methods=["GET"])
 def get_one_cat(cat_id):
-    chosen_cat = Cat.query.get(cat_id)
+    chosen_cat = get_cat_or_abort(cat_id)
 
     response = {
         "id": chosen_cat.id,
@@ -88,7 +88,7 @@ def get_one_cat(cat_id):
     
 @cats_bp.route("/<cat_id>",methods=["PUT", "PATCH"])
 def update_one_cat(cat_id):
-    chosen_cat = Cat.query.get(cat_id)
+    chosen_cat = get_cat_or_abort(cat_id)
 #     try:
 #         cat_id =int(cat_id)
 #     except ValueError:
@@ -119,7 +119,7 @@ def update_one_cat(cat_id):
 
 @cats_bp.route("/<cat_id>", methods=["DELETE"])
 def delete_cat(cat_id):
-    chosen_cat = Cat.query.get(cat_id)
+    chosen_cat = get_cat_or_abort(cat_id)
     # try:
     #     cat_id =int(cat_id)
     # except ValueError:
